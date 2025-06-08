@@ -114,17 +114,18 @@ export default function ManagerDashboard() {
   const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [editingAssignment, setEditingAssignment] = useState<Assignment | null>(null);
   const token = useAuthStore((state) => state.token);
+  const port = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     const fetchEngineers = async () => {
-      const res = await axios.get('http://localhost:5000/api/engineers', {
+      const res = await axios.get(`${port}api/engineers`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEngineers(res.data);
     };
 
     const fetchAssignments = async () => {
-      const res = await axios.get('http://localhost:5000/api/assignments', {
+      const res = await axios.get(`${port}api/assignments`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments(res.data);
@@ -144,7 +145,7 @@ export default function ManagerDashboard() {
     // eslint-disable-next-line no-restricted-globals
     if (!confirm('Are you sure you want to delete this assignment?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/assignments/${assignmentId}`, {
+      await axios.delete(`${port}api/assignments/${assignmentId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments(assignments.filter((a) => a._id !== assignmentId));
@@ -160,7 +161,7 @@ export default function ManagerDashboard() {
 
   const handleUpdate = async (updated: Assignment) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/assignments/${updated._id}`, updated, {
+      const res = await axios.put(`${port}api/assignments/${updated._id}`, updated, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments(assignments.map((a) => (a._id === updated._id ? res.data : a)));

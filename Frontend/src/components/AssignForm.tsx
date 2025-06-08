@@ -158,16 +158,17 @@ export default function AssignForm({ onClose, onSuccess }: AssignFormProps) {
 
   const [engineers, setEngineers] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
-  const token = useAuthStore((state) => state.token);
+  const port = process.env.REACT_APP_API_BASE_URL;
 
+  const token = useAuthStore((state) => state.token);
   useEffect(() => {
     const fetchData = async () => {
-      const engRes = await axios.get('http://localhost:5000/api/engineers', {
+      const engRes = await axios.get(`${port}api/engineers`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEngineers(engRes.data);
 
-      const projRes = await axios.get('http://localhost:5000/api/projects', {
+      const projRes = await axios.get(`${port}api/projects`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(projRes.data);
@@ -185,7 +186,7 @@ export default function AssignForm({ onClose, onSuccess }: AssignFormProps) {
   role: data.role,
 };
     try {
-      await axios.post('http://localhost:5000/api/assignments', payload, {
+      await axios.post(`${port}api/assignments`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
       onSuccess();

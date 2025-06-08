@@ -19,10 +19,11 @@ export default function Assignments() {
   const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [showForm, setShowForm] = useState(false);
   const token = useAuthStore((state) => state.token);
+  const port = process.env.REACT_APP_API_BASE_URL;
 
   const fetchAssignments = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/assignments', {
+      const res = await axios.get(`${port}api/assignments`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments(res.data);

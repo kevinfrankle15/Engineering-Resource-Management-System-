@@ -12,7 +12,7 @@ export default function Profile() {
   const user = useAuthStore((state) => state.user);
   const token = useAuthStore((state) => state.token);
   const setUser = useAuthStore((state) => state.setUser);
-
+  const port = process.env.REACT_APP_API_BASE_URL;
   const { register, handleSubmit, reset } = useForm<FormData>({
     defaultValues: {
       name: user?.name || '',
@@ -30,7 +30,7 @@ export default function Profile() {
         seniority: data.seniority
       };
 
-      const res = await axios.put('http://localhost:5000/api/auth/profile', payload, {
+      const res = await axios.put(`${port}api/auth/profile`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

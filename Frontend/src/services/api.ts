@@ -1,8 +1,7 @@
 // src/services/api.ts
 import axios from 'axios';
-
-const API = axios.create({ baseURL: 'http://localhost:5000/api' });
-
+const port = process.env.REACT_APP_API_BASE_URL;
+const API = axios.create({ baseURL: `${port}api` });
 // Auth
 export const login = (data: { email: string; password: string }) => API.post('/auth/login', data);
 export const getProfile = () => API.get('/auth/profile');

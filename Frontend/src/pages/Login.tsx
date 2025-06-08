@@ -9,12 +9,13 @@ export default function Login() {
   const setUser = useAuthStore((state) => state.setUser);
   const setToken = useAuthStore((state) => state.setToken);
   const navigate = useNavigate();
+  const port = process.env.REACT_APP_API_BASE_URL;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await axios.post(`${port}api/auth/login`, {
         email,
         password,
       });

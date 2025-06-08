@@ -9,11 +9,13 @@ export default function EngineerDashboard() {
   const [assignments, setAssignmentEs] = useState<AssignmentE[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [getAssignmentNum , setGetAssignmentNum] = useState();
+  const port = process.env.REACT_APP_API_BASE_URL;
+
   const {id,name} = user as { id?: string; _id?: string; engineerId?: string; name?: string };
   console.log(id,name, user);
   useEffect(() => {
     const fetchAssignmentEs = async () => {
-      const res = await axios.get('http://localhost:5000/api/assignments', {
+      const res = await axios.get(`${port}api/assignments`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setGetAssignmentNum(res.data[0].engineer_id)
@@ -23,7 +25,7 @@ export default function EngineerDashboard() {
     };
 
     const fetchProjects = async () => {
-      const res = await axios.get('http://localhost:5000/api/projects', {
+      const res = await axios.get(`${port}api/projects`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(res.data);
