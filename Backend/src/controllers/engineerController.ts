@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { pool } from '../db';
+import  pool  from '../db';
 
 export const getEngineers = async (req: Request, res: Response): Promise<void>  => {
   const { skill, level, sortBy, order = 'asc', page = '1', limit = '10' } = req.query;

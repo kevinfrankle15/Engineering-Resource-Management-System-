@@ -1,12 +1,43 @@
 import { Request, Response } from 'express';
-import { pool } from '../db';
-import { log } from 'node:console';
+import  pool  from '../db';
 
+// export const getAllProjects = async (req: Request, res: Response): Promise<void> => {
+//   try {
+//     const result = await pool.query('SELECT * FROM projects ORDER BY id DESC');
+
+//     const projects = result.rows.map(project => ({
+//       _id: project.id.toString(),
+//       name: project.name,
+//       description: project.description,
+//       requiredSkills: project.required_skills,
+//       startDate: project.start_date,
+//       endDate: project.end_date,
+//       teamSize: project.team_size,
+//       status: project.status,
+//     }));
+
+//     res.json(projects);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: 'Failed to fetch projects' });
+//   }
+// };
 export const getAllProjects = async (req: Request, res: Response): Promise<void> => {
   try {
     const result = await pool.query('SELECT * FROM projects ORDER BY id DESC');
 
-    const projects = result.rows.map(project => ({
+    interface ProjectRow {
+      id: number;
+      name: string;
+      description: string;
+      required_skills: string[];
+      start_date: string;
+      end_date: string;
+      team_size: number;
+      status: string;
+    }
+
+    const projects = result.rows.map((project: ProjectRow) => ({
       _id: project.id.toString(),
       name: project.name,
       description: project.description,
@@ -23,7 +54,6 @@ export const getAllProjects = async (req: Request, res: Response): Promise<void>
     res.status(500).json({ message: 'Failed to fetch projects' });
   }
 };
-
 
 export const createProject = async (req: Request, res: Response): Promise<void> => {
   const { name, description, start_date, end_date, required_skills, team_size, status } = req.body;
