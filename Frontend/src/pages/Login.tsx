@@ -9,7 +9,7 @@ export default function Login() {
   const setUser = useAuthStore((state) => state.setUser);
   const setToken = useAuthStore((state) => state.setToken);
   const navigate = useNavigate();
-  const port = process.env.REACT_APP_API_BASE_URL;
+  const port = process.env.REACT_APP_API_BASE_URL ||'http://localhost:5000/api';
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

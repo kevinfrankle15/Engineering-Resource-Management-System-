@@ -19,7 +19,7 @@ export default function Assignments() {
   const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [showForm, setShowForm] = useState(false);
   const token = useAuthStore((state) => state.token);
-  const port = process.env.REACT_APP_API_BASE_URL;
+  const port = process.env.REACT_APP_API_BASE_URL ||'http://localhost:5000/api';
 
   const fetchAssignments = async () => {
     try {

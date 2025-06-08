@@ -114,7 +114,7 @@ export default function ManagerDashboard() {
   const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [editingAssignment, setEditingAssignment] = useState<Assignment | null>(null);
   const token = useAuthStore((state) => state.token);
-  const port = process.env.REACT_APP_API_BASE_URL;
+  const port = process.env.REACT_APP_API_BASE_URL ||'http://localhost:5000/api';
 
   useEffect(() => {
     const fetchEngineers = async () => {

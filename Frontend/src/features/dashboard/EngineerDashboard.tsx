@@ -9,7 +9,7 @@ export default function EngineerDashboard() {
   const [assignments, setAssignmentEs] = useState<AssignmentE[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [getAssignmentNum , setGetAssignmentNum] = useState();
-  const port = process.env.REACT_APP_API_BASE_URL;
+  const port = process.env.REACT_APP_API_BASE_URL ||'http://localhost:5000/api';
 
   const {id,name} = user as { id?: string; _id?: string; engineerId?: string; name?: string };
   console.log(id,name, user);

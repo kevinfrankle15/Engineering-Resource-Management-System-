@@ -12,7 +12,7 @@ export default function Profile() {
   const user = useAuthStore((state) => state.user);
   const token = useAuthStore((state) => state.token);
   const setUser = useAuthStore((state) => state.setUser);
-  const port = process.env.REACT_APP_API_BASE_URL;
+  const port = process.env.REACT_APP_API_BASE_URL ||'http://localhost:5000/api';
   const { register, handleSubmit, reset } = useForm<FormData>({
     defaultValues: {
       name: user?.name || '',

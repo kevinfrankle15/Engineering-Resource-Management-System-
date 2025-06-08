@@ -158,7 +158,7 @@ export default function AssignForm({ onClose, onSuccess }: AssignFormProps) {
 
   const [engineers, setEngineers] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
-  const port = process.env.REACT_APP_API_BASE_URL;
+  const port = process.env.REACT_APP_API_BASE_URL ||'http://localhost:5000/api';
 
   const token = useAuthStore((state) => state.token);
   useEffect(() => {
