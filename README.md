@@ -10,6 +10,14 @@ This system allows **Managers** to create and manage projects, assign engineers 
 
 ---
 
+## To Start Frontend  
+
+npm start
+
+## To Start Backend
+
+npm run dev
+
 ## 🚀 Tech Stack
 
 ### Frontend
