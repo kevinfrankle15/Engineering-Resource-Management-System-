@@ -79,7 +79,7 @@ async function createTables() {
       name TEXT NOT NULL,
       description TEXT,
       start_date DATE,
-      end_date DATE.
+      end_date DATE,
       required_skills TEXT[]
     );
   `);
