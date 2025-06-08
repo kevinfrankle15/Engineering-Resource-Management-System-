@@ -23,7 +23,7 @@ export default function Assignments() {
 
   const fetchAssignments = async () => {
     try {
-      const res = await axios.get(`${port}api/assignments`, {
+      const res = await axios.get(`${port}/assignments`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments(res.data);

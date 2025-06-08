@@ -30,7 +30,7 @@ export default function Profile() {
         seniority: data.seniority
       };
 
-      const res = await axios.put(`${port}api/auth/profile`, payload, {
+      const res = await axios.put(`${port}/auth/profile`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

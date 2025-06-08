@@ -15,7 +15,7 @@ export default function EngineerDashboard() {
   console.log(id,name, user);
   useEffect(() => {
     const fetchAssignmentEs = async () => {
-      const res = await axios.get(`${port}api/assignments`, {
+      const res = await axios.get(`${port}/assignments`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setGetAssignmentNum(res.data[0].engineer_id)
@@ -25,7 +25,7 @@ export default function EngineerDashboard() {
     };
 
     const fetchProjects = async () => {
-      const res = await axios.get(`${port}api/projects`, {
+      const res = await axios.get(`${port}/projects`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(res.data);

@@ -118,14 +118,14 @@ export default function ManagerDashboard() {
 
   useEffect(() => {
     const fetchEngineers = async () => {
-      const res = await axios.get(`${port}api/engineers`, {
+      const res = await axios.get(`${port}/engineers`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEngineers(res.data);
     };
 
     const fetchAssignments = async () => {
-      const res = await axios.get(`${port}api/assignments`, {
+      const res = await axios.get(`${port}/assignments`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments(res.data);
@@ -145,7 +145,7 @@ export default function ManagerDashboard() {
     // eslint-disable-next-line no-restricted-globals
     if (!confirm('Are you sure you want to delete this assignment?')) return;
     try {
-      await axios.delete(`${port}api/assignments/${assignmentId}`, {
+      await axios.delete(`${port}/assignments/${assignmentId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments(assignments.filter((a) => a._id !== assignmentId));
@@ -161,7 +161,7 @@ export default function ManagerDashboard() {
 
   const handleUpdate = async (updated: Assignment) => {
     try {
-      const res = await axios.put(`${port}api/assignments/${updated._id}`, updated, {
+      const res = await axios.put(`${port}/assignments/${updated._id}`, updated, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments(assignments.map((a) => (a._id === updated._id ? res.data : a)));

@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${port}api/auth/login`, {
+      const res = await axios.post(`${port}/auth/login`, {
         email,
         password,
       });
