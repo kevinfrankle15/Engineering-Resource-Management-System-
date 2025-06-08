@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import  pool  from '../db';
+import  {pool}  from '../db';
 
 export const login = async (
   req: Request,

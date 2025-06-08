@@ -97,7 +97,7 @@
 
 
 import { Request, Response } from 'express';
-import  pool  from '../db';
+import  {pool}  from '../db';
 
 export const getAssignments = async (_req: Request, res: Response): Promise<void> => {
   try {

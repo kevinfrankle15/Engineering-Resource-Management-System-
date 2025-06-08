@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import  pool  from '../db';
+import  {pool}  from '../db';
 
 // export const getAllProjects = async (req: Request, res: Response): Promise<void> => {
 //   try {

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import  pool  from '../db';
+import  {pool}  from '../db';
 
 export const getAllEngineers = async (req: Request, res: Response): Promise<void> => {
   try {
