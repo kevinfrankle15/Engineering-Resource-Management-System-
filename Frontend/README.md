@@ -25,7 +25,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Project Structure
 
-- `components/` – Shared reusable UI elements (e.g., `CapacityBar`, `Navbar`)
+- `components/` – Shared reusable UI elements (e.g., `Navbar`)
 - `features/` – Domain-specific logic like `auth`, `dashboard`, `assignment`
 - `context/` – Global state using Zustand
 - `services/` – API helper (`api.ts`)
@@ -38,6 +38,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ```bash
 cd frontend
 npm install
-npm run dev
+npm start
 
 ```
