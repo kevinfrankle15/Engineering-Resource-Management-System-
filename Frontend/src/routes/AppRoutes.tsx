@@ -86,8 +86,7 @@ export default function AppRoutes() {
     </ProtectedRoute>
   }
 />
-        {/* Uncomment if you have a project page later */}
-        {/* <Route path="/projects" element={<ManagerProjects />} /> */}
+
       </Route>
 
       <Route path="*" element={<NotFound />} />

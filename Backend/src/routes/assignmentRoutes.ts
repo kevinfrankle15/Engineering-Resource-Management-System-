@@ -23,7 +23,7 @@
 // router.get('/', verifyToken, getAllAssignments);
 // router.post('/', verifyToken, createAssignment);
 // router.delete('/:id', verifyToken, deleteAssignment);
-// router.put('/:id', verifyToken, updateAssignment); // ✅ NEW
+// router.put('/:id', verifyToken, updateAssignment); 
 
 // export default router;
 

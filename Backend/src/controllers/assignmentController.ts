@@ -99,7 +99,6 @@
 import { Request, Response } from 'express';
 import  pool  from '../db';
 
-// GET all assignments
 export const getAssignments = async (_req: Request, res: Response): Promise<void> => {
   try {
     const result = await pool.query('SELECT * FROM assignments');
@@ -110,7 +109,6 @@ export const getAssignments = async (_req: Request, res: Response): Promise<void
   }
 };
 
-// POST create new assignment
 export const assignEngineer = async (req: Request, res: Response): Promise<void> => {
   const {
     engineerId,
@@ -136,7 +134,7 @@ export const assignEngineer = async (req: Request, res: Response): Promise<void>
         engineerId,
         projectId,
         allocationPercentage,
-        startDate, // expects format: 'YYYY-MM-DD'
+        startDate, 
         endDate,
         role,
       ]
@@ -144,12 +142,11 @@ export const assignEngineer = async (req: Request, res: Response): Promise<void>
 
     res.status(201).json(result.rows[0]);
   } catch (err) {
-    console.error('❌ Failed to create assignment:', err);
+    console.error(' Failed to create assignment:', err);
     res.status(500).json({ message: 'Failed to create assignment' });
   }
 };
 
-// PUT update assignment
 export const updateAssignment = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
   const {
@@ -178,14 +175,13 @@ export const updateAssignment = async (req: Request, res: Response): Promise<voi
 
     res.json(result.rows[0]);
   } catch (err) {
-    console.error('❌ Failed to update assignment:', err);
+    console.error(' Failed to update assignment:', err);
     res.status(500).json({ message: 'Failed to update assignment' });
   }
 };
 
 
 
-// DELETE assignment
 export const deleteAssignment = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
@@ -202,7 +198,7 @@ export const deleteAssignment = async (req: Request, res: Response): Promise<voi
 
     res.json({ message: 'Assignment deleted' });
   } catch (err) {
-    console.error('❌ Failed to delete assignment:', err);
+    console.error(' Failed to delete assignment:', err);
     res.status(500).json({ message: 'Failed to delete assignment' });
   }
 };

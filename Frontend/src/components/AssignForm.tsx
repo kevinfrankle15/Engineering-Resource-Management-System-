@@ -192,7 +192,7 @@ export default function AssignForm({ onClose, onSuccess }: AssignFormProps) {
       onSuccess();
     } catch (err) {
       console.error('Assignment failed', err);
-      alert('❌ Failed to assign engineer');
+      alert(' Failed to assign engineer');
     }
   };
 

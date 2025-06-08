@@ -14,7 +14,6 @@ app.use(cors());
 
 app.use(express.json());
 
-// ✅ use the route
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/assignments', assignmentRoutes);

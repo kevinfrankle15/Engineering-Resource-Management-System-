@@ -35,11 +35,11 @@ export default function AssignmentForm() {
 
     try {
       await createAssignment(payload, token);
-      alert('✅ Assignment created');
+      alert('Assignment created');
       reset();
     } catch (err) {
-      console.error('❌ Assignment error:', err);
-      alert('❌ Error creating assignment');
+      console.error(' Assignment error:', err);
+      alert(' Error creating assignment');
     }
   };
 
