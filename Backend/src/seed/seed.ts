@@ -73,10 +73,30 @@ async function createTables() {
       max_capacity INTEGER
     );
   `);
+   await pool.query(`
+    CREATE TABLE IF NOT EXISTS projects (
+      id SERIAL PRIMARY KEY,
+      name TEXT NOT NULL,
+      description TEXT,
+      start_date DATE,
+      end_date DATE
+    );
+  `);
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS assignments (
+      id SERIAL PRIMARY KEY,
+      user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+      project_id INTEGER REFERENCES projects(id) ON DELETE CASCADE,
+      allocation_percentage INTEGER,
+      start_date DATE,
+      end_date DATE
+    );
+  `);
 }
 
 async function seedUsers() {
-  await createTables(); // ✅ Ensure table exists before inserting
+  await createTables(); //  Ensure table exists before inserting
 
   const users = [
     {
