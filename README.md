@@ -75,6 +75,5 @@ This project was built using the help of AI development tools for acceleration a
 
 ### Clone and Install
 ```bash
-git clone https://github.com/your-username/engineering-resource-management.git
-cd engineering-resource-management
+git clone https://github.com/kevinfrankle15/Engineering-Resource-Management-System-.git
 npm install
