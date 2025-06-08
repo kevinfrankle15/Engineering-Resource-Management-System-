@@ -10,7 +10,8 @@ console.log('[DB] Using updated pool configuration with SSL:', isProduction ? { 
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: isProduction ? { rejectUnauthorized: false } : false,
+  // ssl: isProduction ? { rejectUnauthorized: false } : false,
+  ssl: { rejectUnauthorized: false }
 });
 
 export default pool;
