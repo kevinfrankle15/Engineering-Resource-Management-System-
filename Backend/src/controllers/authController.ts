@@ -43,39 +43,37 @@ export const login = async (
   //   console.error(err);
   //   res.status(500).json({ message: 'Server error' });
   // }
-   try {
+    try {
+    console.log("LOGIN REQUEST: ", { email });
+
     const userResult = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
     const user = userResult.rows[0];
 
     if (!user) {
-      res.status(401).json({ message: 'Invalid credentials' });
-      return 
+      console.log("No user found for email:", email);
+       res.status(401).json({ message: 'Invalid credentials' });
+       return
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      res.status(401).json({ message: 'Invalid credentials' });
-      return 
+      console.log("Password mismatch for user:", email);
+       res.status(401).json({ message: 'Invalid credentials' });
+       return
     }
 
-    // Generate JWT token
+    console.log("Password match. Creating JWT...");
     const token = jwt.sign(
       { id: user.id, role: user.role, name: user.name },
       process.env.JWT_SECRET as string,
       { expiresIn: '1d' }
     );
 
-    // Prepare user object to send without password
     const { password: _, ...userWithoutPassword } = user;
-
-    // Return response expected by frontend
-    res.json({
-      user: userWithoutPassword,
-      token
-    });
+    res.json({ user: userWithoutPassword, token });
 
   } catch (err) {
-    console.error('Login error:', err);
+    console.error("Login error:", err);
     res.status(500).json({ message: 'Server error' });
   }
 };
