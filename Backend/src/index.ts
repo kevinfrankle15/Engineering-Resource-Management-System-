@@ -21,10 +21,10 @@ app.use('/api/assignments', assignmentRoutes);
 app.use('/api/engineers', userRoutes);
 app.use('/api/engineers', engineerRoutes);
 app.get('/', (req, res) => {
-  res.send('API Running ✅');
+  res.send('API Running ');
 });
-
-app.listen(5000, () => {
+const port = process.env.PORT || 5000
+app.listen(port, () => {
   console.log('Server running on http://localhost:5000');
 });
 
