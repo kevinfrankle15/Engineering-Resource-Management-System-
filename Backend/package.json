@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+     "prestart": "npm run build",  
+  "render-setup": "npm install && npm run build && npm run seed",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn src/index.ts",
     "seed": "ts-node src/seed/seed.ts",

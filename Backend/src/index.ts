@@ -23,8 +23,8 @@ app.use('/api/engineers', engineerRoutes);
 app.get('/', (req, res) => {
   res.send('API Running ');
 });
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 10000
 app.listen(port, () => {
-   console.log(`Server running on port ${port}`);
+  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${port}`);
 });
 
