@@ -15,34 +15,71 @@ export const login = async (
     return;
   }
 
-  try {
+  // try {
+  //   const userResult = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+  //   const user = userResult.rows[0];
+   
+    
+  //   if (!user) {
+  //     res.status(401).json({ message: 'Invalid credentials' });
+  //     return;
+  //   }
+
+  //   const isMatch = await bcrypt.compare(password, user.password);
+  //   if (!isMatch) {
+  //     res.status(401).json({ message: 'Invalid credentials' });
+  //     return;
+  //   }
+
+  //   const token = jwt.sign(
+  //     { id: user.id, role: user.role, name: user.name },
+  //     process.env.JWT_SECRET as string,
+  //     { expiresIn: '1d' }
+  //   );
+
+  //   delete user.password;
+  //   res.json({ user, token });
+  // } catch (err) {
+  //   console.error(err);
+  //   res.status(500).json({ message: 'Server error' });
+  // }
+   try {
     const userResult = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
     const user = userResult.rows[0];
 
     if (!user) {
       res.status(401).json({ message: 'Invalid credentials' });
-      return;
+      return 
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       res.status(401).json({ message: 'Invalid credentials' });
-      return;
+      return 
     }
 
+    // Generate JWT token
     const token = jwt.sign(
       { id: user.id, role: user.role, name: user.name },
       process.env.JWT_SECRET as string,
       { expiresIn: '1d' }
     );
 
-    delete user.password;
-    res.json({ user, token });
+    // Prepare user object to send without password
+    const { password: _, ...userWithoutPassword } = user;
+
+    // Return response expected by frontend
+    res.json({
+      user: userWithoutPassword,
+      token
+    });
+
   } catch (err) {
-    console.error(err);
+    console.error('Login error:', err);
     res.status(500).json({ message: 'Server error' });
   }
 };
+
 
 export const getProfile = async (
   //  req: AuthenticatedRequest, 
