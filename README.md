@@ -55,7 +55,7 @@ This project was built using the help of AI development tools for acceleration a
 
 ### AI Use Examples:
 - Suggested Zustand-based global store setup
-- Helped create RESTful route skeletons quickly
+- Helped create RESTful route  quickly
 
 ---
 
