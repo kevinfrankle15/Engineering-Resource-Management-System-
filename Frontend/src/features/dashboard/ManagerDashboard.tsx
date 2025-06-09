@@ -133,7 +133,7 @@ export default function ManagerDashboard() {
 
     fetchEngineers();
     fetchAssignments();
-  }, [token]);
+  }, [token,port]);
 
   const getUsedCapacity = (engineerId: string) => {
     return assignments

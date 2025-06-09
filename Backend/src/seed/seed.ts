@@ -74,26 +74,29 @@ async function createTables() {
     );
   `);
    await pool.query(`
-    CREATE TABLE IF NOT EXISTS projects (
-      id SERIAL PRIMARY KEY,
-      name TEXT NOT NULL,
-      description TEXT,
-      start_date DATE,
-      end_date DATE,
-      required_skills TEXT[]
-    );
-  `);
+  CREATE TABLE IF NOT EXISTS projects (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT,
+    start_date DATE,
+    end_date DATE,
+    required_skills TEXT[],
+    team_size INTEGER,
+    status TEXT CHECK (status IN ('planning', 'active', 'completed')) DEFAULT 'planning'
+  );
+`);
 
-  await pool.query(`
-    CREATE TABLE IF NOT EXISTS assignments (
-      id SERIAL PRIMARY KEY,
-      user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-      project_id INTEGER REFERENCES projects(id) ON DELETE CASCADE,
-      allocation_percentage INTEGER,
-      start_date DATE,
-      end_date DATE
-    );
-  `);
+await pool.query(`
+  CREATE TABLE IF NOT EXISTS assignments (
+    id SERIAL PRIMARY KEY,
+    engineer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    project_id INTEGER REFERENCES projects(id) ON DELETE CASCADE,
+    role TEXT,
+    allocation_percentage INTEGER,
+    start_date DATE,
+    end_date DATE
+  );
+`);
 }
 
 async function seedUsers() {
