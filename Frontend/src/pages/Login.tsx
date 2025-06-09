@@ -36,6 +36,9 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <h1 className="text-2xl font-bold mb-6 text-gray-800">
+    Engineering Resource Management System
+  </h1>
       <form onSubmit={handleLogin} className="bg-white shadow p-6 rounded w-80">
         <h1 className="text-lg font-bold mb-4">Login</h1>
 
