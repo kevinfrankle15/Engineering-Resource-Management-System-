@@ -64,8 +64,7 @@ async function createTables() {
   await pool.query(`DROP TABLE IF EXISTS assignments CASCADE;`);
 await pool.query(`DROP TABLE IF EXISTS projects CASCADE;`);
 await pool.query(`DROP TABLE IF EXISTS users CASCADE;`);
-
-async function createTables() {
+ 
   await pool.query(`
     CREATE TABLE IF NOT EXISTS users (
       id SERIAL PRIMARY KEY,
@@ -147,7 +146,7 @@ async function createTables() {
 //     end_date DATE
 //   );
 // `);
-}
+
 
 async function seedUsers() {
   await createTables(); //  Ensure table exists before inserting
