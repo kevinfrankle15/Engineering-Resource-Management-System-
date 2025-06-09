@@ -17,6 +17,18 @@ npm start
 ## To Start Backend
 
 npm run dev
+---
+### Login Creds:
+
+##Manager login:
+email : alice@company.com , pass : alice123
+
+##Engineer login:
+email : bob@company.com , pass : bob123
+&
+email : charlie@company.com , pass : charlie123
+
+---
 
 ## 🚀 Tech Stack
 
