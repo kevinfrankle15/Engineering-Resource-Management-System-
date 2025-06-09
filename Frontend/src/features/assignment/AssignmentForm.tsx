@@ -20,7 +20,6 @@ export default function AssignmentForm() {
       alert('Unauthorized: Please login first');
       return;
     }
-
     // Normalize date and number types
     const payload = {
       engineerId: data.engineerId,
@@ -31,7 +30,7 @@ export default function AssignmentForm() {
       role: data.role,
     };
 
-    // console.log('📦 Sending Assignment Payload:', payload);
+    console.log('📦 Sending Assignment Payload:', payload);
 
     try {
       await createAssignment(payload, token);
