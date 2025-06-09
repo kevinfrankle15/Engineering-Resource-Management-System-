@@ -135,6 +135,7 @@ const handleUpdate = async () => {
           ) : (
             <>
               <h3 className="font-bold text-lg">{p.name}</h3>
+              <p>ID : {p._id}</p>
               <p className="text-sm text-gray-600">Status: {p.status}</p>
               <p className="text-sm">Description: {p.description || 'N/A'}</p>
               <p className="text-sm">
