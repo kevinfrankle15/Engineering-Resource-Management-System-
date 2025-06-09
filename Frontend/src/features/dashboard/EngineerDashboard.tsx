@@ -18,7 +18,7 @@ export default function EngineerDashboard() {
       const res = await axios.get(`${port}/assignments`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setGetAssignmentNum(res.data[0].engineer_id)
+      setGetAssignmentNum(res.data[0]?.engineer_id)
       const engineerAssignmentEs = res.data.filter((a: AssignmentE) => a.engineerId === user?._id);
       // console.log(engineerAssignmentEs,"engineerAssignmentEs")
       setAssignmentEs(engineerAssignmentEs);
