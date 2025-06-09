@@ -68,7 +68,7 @@ const handleUpdate = async () => {
   }
 };
 
- console.log(projects)
+//  console.log(projects)
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-bold mb-4">Projects</h2>
