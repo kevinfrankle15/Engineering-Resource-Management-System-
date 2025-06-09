@@ -176,10 +176,9 @@ export default function ProjectForm() {
           {...register('status')} 
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         >
-          <option value="planning">Planning Phase</option>
-          <option value="active">Active Development</option>
-          <option value="completed">Completed</option>
-          <option value="on-hold">On Hold</option>
+          <option value="planning">planning</option>
+          <option value="active">active</option>
+          <option value="completed">completed</option>
         </select>
       </div>
     </div>
