@@ -12,7 +12,7 @@ export default function Profile() {
   });
 
   const onSubmit = (data: any) => {
-    console.log('Updated Profile:', data);
+    // console.log('Updated Profile:', data);
   };
 
   return (

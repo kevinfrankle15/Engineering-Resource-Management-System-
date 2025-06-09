@@ -54,8 +54,8 @@ export default function ProjectList() {
 
 const handleUpdate = async () => {
   if (!token || editingProjectId === null) return;
-  console.log(editingProjectId)
-  console.log(editData)
+  // console.log(editingProjectId)
+  // console.log(editData)
   try {
     const res = await updateProject(editingProjectId, editData, token);
     setProjects(projects.map((p) =>

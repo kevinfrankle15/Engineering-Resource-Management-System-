@@ -39,7 +39,7 @@ export default function Assignments() {
   const handleAssignClick = () => {
     setShowForm(true);
   };
-  console.log(assignments,"assignments")
+  // console.log(assignments,"assignments")
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">

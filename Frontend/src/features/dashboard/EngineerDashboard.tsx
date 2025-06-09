@@ -12,7 +12,7 @@ export default function EngineerDashboard() {
   const port = process.env.REACT_APP_API_BASE_URL ||'http://localhost:5000/api';
 
   const {id,name} = user as { id?: string; _id?: string; engineerId?: string; name?: string };
-  console.log(id,name, user);
+  // console.log(id,name, user);
   useEffect(() => {
     const fetchAssignmentEs = async () => {
       const res = await axios.get(`${port}/assignments`, {
@@ -20,7 +20,7 @@ export default function EngineerDashboard() {
       });
       setGetAssignmentNum(res.data[0].engineer_id)
       const engineerAssignmentEs = res.data.filter((a: AssignmentE) => a.engineerId === user?._id);
-      console.log(engineerAssignmentEs,"engineerAssignmentEs")
+      // console.log(engineerAssignmentEs,"engineerAssignmentEs")
       setAssignmentEs(engineerAssignmentEs);
     };
 
@@ -38,7 +38,7 @@ export default function EngineerDashboard() {
   const getProjectName = (projectId: string) => {
     return projects.find((p) => p._id.toString() === projectId.toString())?.name || 'Unknown';
   };
-  console.log(getAssignmentNum !==id,"...",assignments.length===0 )
+  // console.log(getAssignmentNum !==id,"...",assignments.length===0 )
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">My AssignmentEs</h1>
