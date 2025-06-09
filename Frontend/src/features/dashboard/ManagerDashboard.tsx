@@ -175,8 +175,8 @@ export default function ManagerDashboard() {
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <AssignmentForm />
         <ProjectForm />
+        <AssignmentForm />
       </div>
 
       <h2 className="text-xl font-semibold mb-2">Team Overview</h2>
