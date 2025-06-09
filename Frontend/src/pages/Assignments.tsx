@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuthStore } from '../context/authStore';
 import axios from 'axios';
 import AssignForm from '../components/AssignForm';
+import AssignmentForm from '../features/assignment/AssignmentForm';
 
 interface Assignment {
   id: number;
@@ -48,12 +49,12 @@ export default function Assignments() {
           onClick={handleAssignClick}
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
-          + Assign Engineer
+          Assign Engineer
         </button>
       </div>
 
       {showForm && (
-        <AssignForm
+        <AssignmentForm
           onClose={() => setShowForm(false)}
           onSuccess={() => {
             fetchAssignments();
