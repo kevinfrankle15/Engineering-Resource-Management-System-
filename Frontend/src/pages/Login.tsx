@@ -13,6 +13,8 @@ export default function Login() {
   const setUser = useAuthStore((state) => state.setUser);
   const setToken = useAuthStore((state) => state.setToken);
   const navigate = useNavigate();
+  const [showPassword,setShowPassword] = useState(false)
+
   const port = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -89,14 +91,19 @@ export default function Login() {
 
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700">Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="••••••••"
-                required
-              />
+               <div className="relative">
+                  <input
+                    type={showPassword?"text":"password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full p-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="••••••••"
+                    required
+                  />
+                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-sm font-medium text-gray-500 cursor-pointer hover:text-gray-700" onClick={()=>setShowPassword(!showPassword)}>
+                    show
+                  </span>
+               </div>
             </div>
 
             <div>
