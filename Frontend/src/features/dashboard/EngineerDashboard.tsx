@@ -10,17 +10,17 @@ export default function EngineerDashboard() {
   const [assignments, setAssignments] = useState<AssignmentE[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
 
-  const baseUrl = 'http://localhost:5000/api';
+  const port = process.env.REACT_APP_API_BASE_URL ||'http://localhost:5000/api';
   const engineerId = user?._id || user?.id || user?.engineerId;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [assignmentsRes, projectsRes] = await Promise.all([
-          axios.get(`${baseUrl}/assignments`, {
+          axios.get(`${port}/assignments`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get(`${baseUrl}/projects`, {
+          axios.get(`${port}/projects`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);

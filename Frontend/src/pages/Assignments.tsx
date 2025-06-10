@@ -118,19 +118,20 @@ export default function Assignments() {
 
   const token = useAuthStore((state) => state.token);
 
-
+   const port = process.env.REACT_APP_API_BASE_URL ||'http://localhost:5000/api';
    useEffect(() => {
     const fetchData = async () => {
-      const engRes = await axios.get(`http://localhost:5000/api/engineers`, {
+      const engRes = await axios.get(`${port}/engineers`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEngineers(engRes.data);
 
-      const projRes = await axios.get(`http://localhost:5000/api/projects`, {
+      const projRes = await axios.get(`${port}/projects`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(projRes.data);
 
+      // Send data back to parent
     };
 
     fetchData();
@@ -138,7 +139,7 @@ export default function Assignments() {
   const fetchAssignments = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/api/assignments`, {
+      const res = await axios.get(`${port}/assignments`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAssignments(res.data);
