@@ -101,7 +101,7 @@ export default function Login() {
                     required
                   />
                   <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-sm font-medium text-gray-500 cursor-pointer hover:text-gray-700" onClick={()=>setShowPassword(!showPassword)}>
-                    show
+                    {showPassword?"hide":"show"}
                   </span>
                </div>
             </div>
