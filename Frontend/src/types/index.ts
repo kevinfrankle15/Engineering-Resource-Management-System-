@@ -33,7 +33,7 @@ export interface Assignment {
 
 export interface AssignmentE {
    _id: string;
-  engineerId: string;
+  engineer_id: string;
   project_id: string;
   allocation_percentage: number;
   start_date: string;

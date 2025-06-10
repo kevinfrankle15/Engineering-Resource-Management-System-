@@ -131,7 +131,6 @@ export default function Assignments() {
       });
       setProjects(projRes.data);
 
-      // Send data back to parent
     };
 
     fetchData();
