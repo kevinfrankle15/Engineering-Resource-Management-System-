@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { createAssignment } from '../../services/api';
 import { useAuthStore } from '../../context/authStore';
+import { useState } from 'react';
 
 interface AssignmentFormInput {
   engineerId: string;
@@ -17,6 +18,7 @@ interface AssignFormProps {
 export default function AssignmentForm({ onClose, onSuccess }: AssignFormProps) {
   const { register, handleSubmit, reset } = useForm<AssignmentFormInput>();
   const token = useAuthStore((state) => state.token);
+  const [message, setMessage] = useState<{text: string, type: 'success' | 'error'} | null>(null);
 
   const onSubmit = async (data: AssignmentFormInput) => {
     if (!token) {
@@ -37,12 +39,21 @@ export default function AssignmentForm({ onClose, onSuccess }: AssignFormProps) 
 
     try {
       await createAssignment(payload, token);
-      alert('Assignment created');
+      setMessage({ text: 'Project Assigned successful!', type: 'success' });
+      setTimeout(()=>{
+        setMessage(null);
+      },500)
       reset();
       onSuccess()
     } catch (err) {
       console.error(' Assignment error:', err);
-      alert(' Error creating assignment');
+        setMessage({ 
+        text: 'Failed to Assign Project', 
+        type: 'error' 
+      });
+       setTimeout(()=>{
+         setMessage(null)
+        },500)
     }
   };
 
@@ -92,6 +103,15 @@ export default function AssignmentForm({ onClose, onSuccess }: AssignFormProps) 
     //   </button>
     // </form>
     <form onSubmit={handleSubmit(onSubmit)} className="border border-gray-200 p-4 rounded-lg bg-white">
+    {message && (
+            <div className={`mb-4 p-3 rounded-md ${
+              message.type === 'success' 
+                ? 'bg-green-100 text-green-800' 
+                : 'bg-red-100 text-red-800'
+            }`}>
+              {message.text}
+            </div>
+          )}
   <h3 className="font-semibold text-lg text-gray-800 mb-4">Create Assignment</h3>
 
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -73,7 +73,7 @@ export const updateAssignment = (id: string, data: any, token: string) =>
     headers: { Authorization: `Bearer ${token}` },
   });
 
-export const deleteAssignment = (id: string, token: string) =>
+export const deleteAssignment = (id: number, token: string) =>
   API.delete(`/assignments/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   });

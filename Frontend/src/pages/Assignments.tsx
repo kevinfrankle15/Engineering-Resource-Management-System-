@@ -94,6 +94,7 @@ import { useEffect, useState } from 'react';
 import { useAuthStore } from '../context/authStore';
 import axios from 'axios';
 import AssignmentForm from '../features/assignment/AssignmentForm';
+import { deleteAssignment } from '../services/api';
 
 interface Assignment {
   id: number;
@@ -114,7 +115,7 @@ export default function Assignments() {
   const [engineers, setEngineers] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
-
+  const [message, setMessage] = useState<{text: string, type: 'success' | 'error'} | null>(null);
 
   const token = useAuthStore((state) => state.token);
 
@@ -152,12 +153,40 @@ export default function Assignments() {
     }
   };
 
+   const handleDelete = async (id:number) =>{
+  try{
+    // eslint-disable-next-line no-restricted-globals
+    if (!token || !confirm('Are you sure you want to delete this project?')) return;
+    await deleteAssignment(id,token)
+    setAssignments(assignments.filter((a)=>a.id !==id));
+      setMessage({ text: 'Assignment deleted successful!', type: 'success' });
+      setTimeout(()=>{
+        setMessage(null);
+      },1000)
+  }catch(err){
+    console.log("error in deleting" ,err)
+    setMessage({ text: 'Failed to  deleted Assignment!', type: 'error' });
+      setTimeout(()=>{
+        setMessage(null);
+      },500)
+  }
+ }
+
   useEffect(() => {
     fetchAssignments();
   }, [token]);
 
   return (
     <div className="p-4 md:p-6 max-w-7xl mx-auto">
+       {message && (
+            <div className={`mb-4 p-3 rounded-md ${
+              message.type === 'success' 
+                ? 'bg-green-100 text-green-800' 
+                : 'bg-red-100 text-red-800'
+            }`}>
+              {message.text}
+            </div>
+          )}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Engineer Assignments</h1>
@@ -210,6 +239,8 @@ export default function Assignments() {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Allocation</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Period</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"></th>
+
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -236,6 +267,14 @@ export default function Assignments() {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <div>{new Date(a.start_date).toLocaleDateString()}</div>
                     <div>{new Date(a.end_date).toLocaleDateString()}</div>
+                  </td>
+                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <button 
+                    onClick={() => handleDelete(a.id)} 
+                    className="px-3 py-1 text-sm text-red-600 hover:text-red-800 hover:bg-red-50 rounded transition-colors"
+                  >
+                    Delete
+                  </button>
                   </td>
                 </tr>
               ))}
