@@ -16,7 +16,7 @@ export default function Profile() {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
   const [serverError, setServerError] = useState('');
-
+  const port = process.env.REACT_APP_API_BASE_URL ||'http://localhost:5000/api';
   const { register, handleSubmit, reset, formState: { errors, isDirty } } = useForm<FormData>({
     defaultValues: {
       name: user?.name || '',
@@ -26,7 +26,6 @@ export default function Profile() {
   });
 
   useEffect(() => {
-    // Reset form when user data changes
     reset({
       name: user?.name || '',
       skills: user?.skills?.join(', ') || '',
@@ -47,7 +46,7 @@ export default function Profile() {
         seniority: data.seniority
       };
 
-      const res = await axios.put(`${process.env.API_URL || 'http://localhost:5000'}/api/auth/profile`, payload, {
+      const res = await axios.put(`${port}/auth/profile`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
