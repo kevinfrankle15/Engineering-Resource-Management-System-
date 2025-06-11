@@ -19,19 +19,21 @@ export default function AssignmentForm({ onClose, onSuccess }: AssignFormProps) 
   const { register, handleSubmit, reset } = useForm<AssignmentFormInput>();
   const token = useAuthStore((state) => state.token);
   const [message, setMessage] = useState<{text: string, type: 'success' | 'error'} | null>(null);
-
+    const engineerString = localStorage.getItem('engineers');
+  const engineers= engineerString ? JSON.parse(engineerString):[];
+  const projectString = localStorage.getItem('projects');
+  const projects = projectString ? JSON.parse(projectString):[];
   const onSubmit = async (data: AssignmentFormInput) => {
     if (!token) {
       alert('Unauthorized: Please login first');
       return;
     }
-    // Normalize date and number types
     const payload = {
       engineerId: data.engineerId,
       projectId: data.projectId,
       allocationPercentage: Number(data.allocationPercentage),
-      startDate: new Date(data.startDate).toISOString().split('T')[0], // 'YYYY-MM-DD'
-      endDate: new Date(data.endDate).toISOString().split('T')[0],     // 'YYYY-MM-DD'
+      startDate: new Date(data.startDate).toISOString().split('T')[0],
+      endDate: new Date(data.endDate).toISOString().split('T')[0],     
       role: data.role,
     };
 
@@ -118,11 +120,15 @@ export default function AssignmentForm({ onClose, onSuccess }: AssignFormProps) 
     <div className="space-y-3">
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">Engineer ID*</label>
-        <input
-          {...register('engineerId', { required: true })}
-          placeholder="ENG-001"
+         <select 
+          {...register('engineerId')} 
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        />
+        >{engineers?.map((v:{id:number,name:string},indx:number)=>(
+
+          <option value={v.id} key={indx}>{v.id}-{v.name} </option>
+        ))}
+         
+        </select>
       </div>
 
       <div>
@@ -148,11 +154,13 @@ export default function AssignmentForm({ onClose, onSuccess }: AssignFormProps) 
     <div className="space-y-3">
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">Project ID*</label>
-        <input
-          {...register('projectId', { required: true })}
-          placeholder="PRJ-100"
+        <select {...register('projectId')} 
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        />
+          >
+          {projects.map((v:{_id:number,name:string},indx:number)=>(
+            <option key={indx} value={v._id}>{v._id} - {v.name}</option>
+          ))}
+         </select>
       </div>
 
       <div>

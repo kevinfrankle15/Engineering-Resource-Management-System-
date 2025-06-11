@@ -126,13 +126,15 @@ export default function Assignments() {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEngineers(engRes.data);
+      localStorage.setItem('engineers',JSON.stringify(engRes.data));
+
 
       const projRes = await axios.get(`${port}/projects`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProjects(projRes.data);
+      localStorage.setItem('projects',JSON.stringify(projRes.data));
 
-      // Send data back to parent
     };
 
     fetchData();

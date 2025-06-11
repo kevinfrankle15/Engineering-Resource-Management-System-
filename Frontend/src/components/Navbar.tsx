@@ -73,9 +73,9 @@ export default function Navbar() {
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
-              <span className="text-2xl">✕</span> // Close icon (X)
+              <span className="text-2xl">✕</span> 
             ) : (
-              <span className="text-2xl">☰</span> // Hamburger menu icon
+              <span className="text-2xl">☰</span> 
             )}
           </button>
         )}
