@@ -1,4 +1,4 @@
-# 🛠 Engineering Resource Management System
+# 🛠 Engineering Resource Management System  -- https://engineering-resource-management-system-fe-l27q.onrender.com/
 
 A full-stack web application designed to help engineering teams manage project assignments, track capacity, and optimize resource allocation.
 
@@ -54,8 +54,8 @@ email : charlie@company.com , pass : charlie123
 - Edit personal profile (skills, seniority level, availability)
 
 ### Manager
-- Create/edit projects with required skills and duration
-
+- Create/edit/delete projects with required skills and duration
+- Filtering and Pagination for Projects
 ---
 
 ## 📊 Core Modules
