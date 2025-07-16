@@ -47,7 +47,7 @@ export default function Login() {
         else{
 navigate('/manager');
         }
-      })
+      },1000)
     } catch (err) {
       console.error('Login failed', err);
       setMessage({ 
