@@ -24,18 +24,18 @@ export default function Navbar() {
     <nav className="bg-white p-4 shadow-md mb-6">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo/Brand */}
-        {/* <Link 
+        <Link 
           to={user?.role === 'manager' ? '/manager' : '/engineer'} 
           className="font-bold text-lg text-gray-800 hover:text-blue-600 transition-colors"
         >
           Resource Manager
-        </Link> */}
-                <Link 
+        </Link>
+                {/* <Link 
           to={'/manager' } 
           className="font-bold text-lg text-gray-800 hover:text-blue-600 transition-colors"
         >
           Resource Manager
-        </Link>
+        </Link> */}
 
         {/* Desktop Navigation */}
         {user && (

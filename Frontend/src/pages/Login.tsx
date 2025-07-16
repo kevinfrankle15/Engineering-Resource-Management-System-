@@ -23,31 +23,23 @@ export default function Login() {
     setMessage(null);
 
     try {
-      // const res = await axios.post(`${port}/auth/login`, {
-      //   email,
-      //   password,
-      // });
+      const res = await axios.post(`${port}/auth/login`, {
+        email,
+        password,
+      });
 
-      // setUser(res.data.user);
-      // setToken(res.data.token);
+      setUser(res.data.user);
+      setToken(res.data.token);
       setMessage({ text: 'Login successful! Redirecting...', type: 'success' });
 
-      // setTimeout(() => {
-      //   if (res.data.user.role === 'manager') {
-      //     navigate('/manager');
-      //   } else {
-      //     navigate('/engineer');
-      //   }
-      // }, 1500);
-
-      setTimeout(()=>{
-        if(email ==="manager@gmail.com"){
+      setTimeout(() => {
+        if (res.data.user.role === 'manager') {
           navigate('/manager');
+        } else {
+          navigate('/engineer');
         }
-        else{
-navigate('/manager');
-        }
-      },1000)
+      }, 1500);
+
     } catch (err) {
       console.error('Login failed', err);
       setMessage({ 
